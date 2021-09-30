@@ -19,7 +19,8 @@ $(document).on('click', '#reset-form', function () {
     $("#executor-form")[0].reset();
     if ($("#execute").text() != 'Executing' && !$("#execute").hasClass('btn-info')) {
         $("#download-btn").hide();
-        $("#execute").text("Execute").removeClass("btn-success btn-danger btn-info").addClass("btn-primary");
+        $("#execute").text("Execute").removeClass("btn-success btn-danger btn-info disabled").addClass("btn-primary");
+        $("#command-generated").text("Run.sh");
     }
     
 });
@@ -57,7 +58,7 @@ $(document).on('submit', 'form', function (event) {
         $.getJSON(status_url, function(data) {
             if (data['state'] != 'PENDING' && data['state'] != 'PROGRESS') {
                 if (data['state'] == 'SUCCESS') {
-                    $("#execute").text("Executed Successfully!").removeClass("btn-info btn-danger").addClass("btn-success");
+                    $("#execute").text("Executed Successfully!").removeClass("btn-info btn-danger disabled").addClass("btn-success");
                     let filename = `output-${taskid}.txt`;
                     $("#download-btn").show();
                     $("#download-btn").empty();
@@ -85,13 +86,13 @@ $(document).on('submit', 'form', function (event) {
         dataType : 'json',
         data : JSON.stringify(data),
         success : function(data, status, request) {
-            $("#execute").text("Executing").removeClass( "btn-success btn-danger" ).addClass("btn-info");
+            $("#execute").text("Executing").removeClass( "btn-success btn-danger" ).addClass("btn-info disabled");
             const status_url = request.getResponseHeader('Location');
             const taskid = request.getResponseHeader('taskid');
             $("#download-btn").hide();
             update_progress(status_url, taskid);
         },error : function(result){
-           $("#execute").text("Failed").removeClass("btn-info btn-success").addClass("btn-danger");
+           $("#execute").text("Failed").removeClass("btn-info btn-success").addClass("btn-danger disabled");
         }
     });
 })
