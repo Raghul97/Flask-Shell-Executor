@@ -43,13 +43,11 @@ $(document).on('submit', 'form', function (event) {
 
     $("#command-generated").text(output);
 
-//    Celery Integration.
     function update_progress(status_url, taskid) {
         $.getJSON(status_url, function(data) {
-            console.log(data);
             if (data['state'] != 'PENDING' && data['state'] != 'PROGRESS') {
                 if (data['state'] == 'SUCCESS') {
-                    $("#execute").text("Executed Successfully!").removeClass( "btn-info btn-danger" ).addClass( "btn-success" );
+                    $("#execute").text("Executed Successfully!").removeClass( "btn-info btn-danger" ).addClass( "btn-success disabled" );
                     const filename = `output-${taskid}.txt`;
                     $('#download-btn').append(`<a id='download' href="/download/${filename}" style='text-decoration: none; color: black;'>
                         <button type="button" class="btn btn-outline-success btn-execute">Download</button>
@@ -58,6 +56,7 @@ $(document).on('submit', 'form', function (event) {
                 else {
                     $("#execute").text("Failed").removeClass( "btn-info btn-success" ).addClass( "btn-danger" );
                 }
+                return
             }
             else {
                 setTimeout(function() {
@@ -77,11 +76,10 @@ $(document).on('submit', 'form', function (event) {
             $("#execute").text("Executing").removeClass( "btn-success btn-danger" ).addClass( "btn-info" );
             const status_url = request.getResponseHeader('Location');
             const taskid = request.getResponseHeader('taskid');
-            $("#executor-form")[0].reset();
             update_progress(status_url, taskid);
+            $("#executor-form")[0].reset();
         },error : function(result){
            $("#execute").text("Failed").removeClass( "btn-info btn-success" ).addClass( "btn-danger" );
         }
     });
 })
-

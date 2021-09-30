@@ -1,0 +1,33 @@
+version: "3.8"
+services:
+
+  flask_app:
+    build: './flask_app'
+    ports:
+      - "5000:5000"
+    volumes:
+      - type: bind
+        source: /opt
+        target: /opt
+    depends_on:
+      - redis
+    
+  redis:
+    hostname: redis
+    image: docker.io/bitnami/redis:6.2
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+    ports:
+      - '6379:6379'
+
+  celery_worker:
+    build: './celery_worker'
+    user: root
+    volumes:
+      - type: bind
+        source: /opt
+        target: /opt
+    depends_on:
+      - redis
+      - flask_app
