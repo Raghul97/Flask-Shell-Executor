@@ -12,120 +12,148 @@
   </head>
   <body>
 
-    <!-- Command Generated -->
-    <div class="command-holder">
-        <h2>Command:</h2>
-        <h4 id="command-generated">Run.sh</h4>
-    </div>
-
     <div class='form-holder'>
 
-        <form id="executor-form" class="row g-2" method="POST" action="/form-parse">
+        <!-- Command Section -->
+        <div class="command-section">
+            <h2>Command:</h2>
+          <div class="command-holder">
+            <h4 id="command-generated">Run.sh</h4>
+          </div>
+        </div>
+
+        <!-- Form Section -->
+        <form id="executor-form" class="row g-2">
 
             <!-- server and port details-->
-            <div id='server-detail' class="side-by-side">
-                <div class="col-md-6 side-by-side">
-                    <div class="col-md-8 server">
+              <div id='server-detail' class="flex-container">
+                <div class="col-md-6 flex-container" style="margin-left: 0px;">
+                    <div class="col-md-8">
                         <input type="text" class="form-control" name="server_one" placeholder="Server 1" required>
                     </div>
                     <div class="col-md-2 port">
                         <input type="number" class="form-control" name="port_one" placeholder="Port" min="0" max="65535" required>
                     </div>
                 </div>
-                <div class="col-md-6 side-by-side">
-                    <div class="col-md-8 server">
+                <div class="col-md-6 flex-container" style="margin-left: 5%; margin-bottom: 20px;">
+                    <div class="col-md-8">
                         <input type="text" class="form-control" name="server_two" placeholder="Server 2" required>
                     </div>
                     <div class="col-md-2 port">
                         <input type="number" class="form-control" name="port_two" placeholder="Port" min="0" max="65535" required>
                     </div>
                 </div>
-            </div>
+              </div>
+            
 
             <!-- Add Arguments -->
-            <div class="row center-aligned">
-                 <div class="col-12 arg-detail side-by-side">
-                     <h2 class="arg-detail">Arguments:</h2>
-                     <br>
-                    <div class="align-arg">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="test-check">
-                          <label class="form-check-label arg-label" for="test-check">
-                            Test:
-                            <input type="text" name="test" class="args">
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="thread-check" >
-                          <label class="form-check-label arg-label" for="thread-check">
-                            Threads:
-                            <input type="number" class="args"  name="threads">
-                          </label>
-                        </div>
-                         <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="reqmode-check" >
-                          <label class="form-check-label arg-label" for="reqmode-check">
-                            Request mode:
-                            <input type="text" class="args" name="reqmode">
-                          </label>
-                        </div>
+            <div class="flex-container" style="margin: 20px;">
+              <h2>Arguments:</h2>
+            </div>
+            <div class="container checkbox-section">
+              <div class="row">
+                <div class="col-sm">
+                  <div class="input-group mb-3">
+                    <div class="input-group-text">
+                      <input class="form-check-input mt-0" type="checkbox" aria-label="Checkbox for following text input">
                     </div>
-                     <div class="align-arg">
-                         <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="env-check" >
-                          <label class="form-check-label arg-label" for="env-check">
-                            Environment:
-                            <input type="text" class="args" name="env">
-                          </label>
-                        </div>
-                      <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="email-check" >
-                          <label class="form-check-label arg-label" for="email-check">
-                            Email:
-                            <input type="email" class="args"  name="email">
-                          </label>
-                        </div>
-                      <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="summary-check" >
-                          <label class="form-check-label arg-label" for="summary-check">
-                            Summary:
-                            <input type="text" class="args"  name="summary">
-                          </label>
-                        </div>
-                     </div>
-                 </div>
+                    <input type="text" name="test" class="form-control" placeholder="Test" aria-label="Text input with checkbox">
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="input-group mb-3">
+                    <div class="input-group-text">
+                      <input class="form-check-input mt-0" type="checkbox" aria-label="Checkbox for following text input">
+                    </div>
+                    <input type="number" name="threads" class="form-control" placeholder="Threads" min="0" aria-label="Text input with checkbox">
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="input-group mb-3">
+                    <div class="input-group-text">
+                      <input class="form-check-input mt-0" type="checkbox" aria-label="Checkbox for following text input">
+                    </div>
+                    <input type="text" name="reqmode" class="form-control" placeholder="Request mode" aria-label="Text input with checkbox">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="container checkbox-section">
+              <div class="row">
+                <div class="col-sm">
+                  <div class="input-group mb-3">
+                    <div class="input-group-text">
+                      <input class="form-check-input mt-0" type="checkbox" aria-label="Checkbox for following text input">
+                    </div>
+                    <input type="text" name="env" class="form-control" placeholder="Environment" aria-label="Text input with checkbox">
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="input-group mb-3">
+                    <div class="input-group-text">
+                      <input class="form-check-input mt-0" type="checkbox" aria-label="Checkbox for following text input">
+                    </div>
+                    <input type="email" name="env" class="form-control" placeholder="Email" aria-label="Text input with checkbox">
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="input-group mb-3">
+                    <div class="input-group-text">
+                      <input class="form-check-input mt-0" type="checkbox" aria-label="Checkbox for following text input">
+                    </div>
+                    <input type="text" name="summary" class="form-control" placeholder="Summary" aria-label="Text input with checkbox">
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+
+            <div class="flex-container">
+              <div class="col-12">
+                <h2>Add Custom Arguments:</h2>
+                <br>
+                <table class="table table-hover table-dark">
+                  <thead>
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">Value</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+
+                  <!-- Additional arguments to be added by user. -->
+                  <tbody id="custom-argument">
+
+                  </tbody>
+
+                </table>
+              </div>
             </div>
 
-            <!--Add Custom Arguments.-->
-            <div class="row center-aligned">
-               <div class="col-12 arg-detail">
-                   <h2 class="arg-detail">Add Custom Arguments:</h2>
-                   <br>
-                  <table class="table table-hover table-dark" id="arg-table">
-                     <thead>
-                        <tr>
-                           <th scope="col">Name</th>
-                           <th scope="col">Value</th>
-                            <th scope="col"></th>
-                        </tr>
-                     </thead>
-
-                    <!-- Additional arguments to be added by user. -->
-                     <tbody id="custom-argument">
-
-                     </tbody>
-
-                  </table>
-                   <button type="button" id="add" class="btn btn-success">New Argument</button>
-               </div>
+            <div class="flex-container">
+              <div class="new-arg">
+                <button type="button" id="add" class="btn btn-success">New Argument</button>
+              </div>
             </div>
-
-            <button type="submit" id='execute' class="btn btn-primary btn-execute">Execute</button>
-
+            
+            <div class="flex-container">
+              <button type="submit" id='execute' class="btn btn-primary btn-actions">Execute</button>
+            </div>
+            
             <!-- placeholder for downloadable file. -->
-            <div id="download-btn">
+            
+              <div class="flex-container">
 
-            </div>
+                <div id="download-btn" class="flex-child magenta">
+
+                </div>
+                
+                <div class="flex-child green">
+                  <button id="reset-form" type="button" onclick="resetForm();" class="btn btn-outline-secondary btn-actions">Reset</button>
+                </div>
+
+              </div>
+            
 
         </form>
 

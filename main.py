@@ -10,6 +10,8 @@ app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
 app.config['result_backend'] = 'redis://localhost:6379/0'
 
 DOWNLOAD_FOLDER = './logs'
+if not os.path.isdir(DOWNLOAD_FOLDER):
+    os.system('mkdir ./logs')
 app.config['UPLOAD_FOLDER'] = DOWNLOAD_FOLDER
 
 celery_app = Celery('main', broker=app.config['CELERY_BROKER_URL'])

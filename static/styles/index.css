@@ -3,34 +3,8 @@ body {
     color: white;
 }
 
-.form-holder {
-  margin: 40px 70px 40px 40px;
-}
-
-.side-by-side {
-    display: flex;
-}
-
-.server {
-    margin-left: 50px;
-}
-
-.port {
-    margin-left: 15px;
-    width:150px;
-}
-
 th {
     text-align: center;
-}
-
-.center-aligned {
-    margin: auto;
-    margin-top: 30px;
-}
-
-.arg-detail {
-    margin-left: 10px;
 }
 
 .del-button {
@@ -38,51 +12,51 @@ th {
     width: 20px;
 }
 
-.command-holder {
-    margin-left: 90px;
-    margin-top: 30px;
+.form-holder {
+    margin: 40px 80px 20px 30px;
 }
 
-#command-generated {
-    padding: 0px;
-    margin: 20px 50px;
+.text-field {
+    margin-left: 2%;
+}
+
+.port {
+    margin-left: 2%;
+}
+
+.command-section {
+    margin: 5px 30px;
+}
+
+.command-holder {
+    margin: 45px 5%;
     color: green;
 }
 
-.btn-execute {
-    margin: auto;
-    margin-top: 30px;
-    margin-left: 35px;
-    width: 96%;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-bottom: 0;
+.checkbox-section {
+    margin: 20px 30px 30px 30px;
 }
 
+.new-arg {
+    margin-left: auto; 
+    margin-right: 0;
+}
 
-.checkbox-btn {
-    margin: auto;
-    margin-left: 30px;
+.flex-container {
+    display: flex;
+    margin: 5px 30px;
+}
+
+.flex-child {
+    flex: 1;
+}  
+
+.flex-child:first-child {
     margin-right: 20px;
-}
+} 
 
-.align-arg {
-    margin-left: 30px;
-    margin-top: 70px;
-}
-
-.args {
-  height: 20px;
-  flex: 0 0 200px;
-  margin-left: 20px;
-}
-
-.arg-label {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  text-align: center;
-  width: 400px;
-  line-height: 26px;
-  margin-bottom: 10px;
+.btn-actions {
+    margin: 5px 0;
+    padding: 10px;
+    width: 100%;
 }
