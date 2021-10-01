@@ -1,17 +1,28 @@
 $(document).ready(function(){
     let row = 0;
+    $("#download-btn").hide();
     $("#add").click(function(){
         row = row + 1;
         $("tbody").append(`<tr>
             <td><input type="text" key="custom-${row}" class="form-control"></td>
             <td><input type="text" class="form-control"></td>
-            <td class='del-button'><button type="button" class="btn btn-outline btn-danger del">Delete</button></td>
+            <td class='del-button'><button type="button" class="btn btn-outline btn-danger cus-arg-rm">Delete</button></td>
         </tr>`);
     });
 });
 
-$(document).on('click', '.del', function () {
+$(document).on('click', '.cus-arg-rm', function () {
     $(this).closest('tr').remove();
+});
+
+$(document).on('click', '#reset-form', function () {
+    $("#executor-form")[0].reset();
+    if ($("#execute").text() != 'Executing' && !$("#execute").hasClass('btn-info')) {
+        $("#download-btn").hide();
+        $("#execute").text("Execute").removeClass("btn-success btn-danger btn-info disabled").addClass("btn-primary");
+        $("#command-generated").text("Run.sh");
+    }
+    
 });
 
 $(document).on('submit', 'form', function (event) {
@@ -30,7 +41,7 @@ $(document).on('submit', 'form', function (event) {
          }
     });
     $("input:checkbox:checked").each(function(){
-        const elem = $(this).next().find('input');
+        const elem = $(this).parent().next();
         if (elem.val()) {
             data[elem.attr("name")] = elem.val();
         }
@@ -47,10 +58,12 @@ $(document).on('submit', 'form', function (event) {
         $.getJSON(status_url, function(data) {
             if (data['state'] != 'PENDING' && data['state'] != 'PROGRESS') {
                 if (data['state'] == 'SUCCESS') {
-                    $("#execute").text("Executed Successfully!").removeClass( "btn-info btn-danger" ).addClass( "btn-success disabled" );
-                    const filename = `output-${taskid}.txt`;
+                    $("#execute").text("Executed Successfully!").removeClass("btn-info btn-danger disabled").addClass("btn-success");
+                    let filename = `output-${taskid}.txt`;
+                    $("#download-btn").show();
+                    $("#download-btn").empty();
                     $('#download-btn').append(`<a id='download' href="/download/${filename}" style='text-decoration: none; color: black;'>
-                        <button type="button" class="btn btn-outline-success btn-execute">Download</button>
+                        <button type="button" class="btn btn-outline-success btn-actions">Download</button>
                     </a>`)
                 }
                 else {
@@ -73,13 +86,13 @@ $(document).on('submit', 'form', function (event) {
         dataType : 'json',
         data : JSON.stringify(data),
         success : function(data, status, request) {
-            $("#execute").text("Executing").removeClass( "btn-success btn-danger" ).addClass( "btn-info" );
+            $("#execute").text("Executing").removeClass( "btn-success btn-danger" ).addClass("btn-info disabled");
             const status_url = request.getResponseHeader('Location');
             const taskid = request.getResponseHeader('taskid');
+            $("#download-btn").hide();
             update_progress(status_url, taskid);
-            $("#executor-form")[0].reset();
         },error : function(result){
-           $("#execute").text("Failed").removeClass( "btn-info btn-success" ).addClass( "btn-danger" );
+           $("#execute").text("Failed").removeClass("btn-info btn-success").addClass("btn-danger disabled");
         }
     });
 })
