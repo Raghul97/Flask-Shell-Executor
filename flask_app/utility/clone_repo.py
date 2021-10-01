@@ -12,5 +12,8 @@ class GitCLone:
             os.system('rm -rf /opt/repo')
 
     def clone(self):
+        '''
+            clone the git repo, when the app is initialized.
+        '''
         self.check_repo_free()
         Repo.clone_from(self.repo_url, self.clone_to_repo)

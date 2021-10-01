@@ -1,6 +1,7 @@
 version: "3.8"
 services:
 
+  # build flask application and expose port 5000 and bind the container volume /opt to host volume.
   flask_app:
     build: './flask_app'
     ports:
@@ -11,7 +12,8 @@ services:
         target: /opt
     depends_on:
       - redis
-    
+  
+  # pull redis image and set empty password for developer environment and export port 6379.
   redis:
     hostname: redis
     image: docker.io/bitnami/redis:6.2
@@ -21,6 +23,7 @@ services:
     ports:
       - '6379:6379'
 
+  # build celery app and bind the volume of container /opt to hosts /opt.
   celery_worker:
     build: './celery_worker'
     user: root
