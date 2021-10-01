@@ -29,7 +29,7 @@ Flask Application for providing arguments to the shell script and attach the out
     2. source ,/venv/bin/activate
 
 2.  install required packages.
-    1. pip install -r requiremnets.freeze
+    1. pip install -r requirements.freeze
 
 3. install redis.
     1. sudo apt update
